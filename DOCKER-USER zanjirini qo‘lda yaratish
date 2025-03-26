@@ -1,0 +1,17 @@
+Agar Docker uni avtomatik ravishda yaratmasa, siz uni qo‘lda qo‘shishingiz mumkin.
+
+iptables uchun (legacy rejimda ishlayotgan bo‘lsangiz):
+
+sudo iptables -N DOCKER-USER
+sudo iptables -A DOCKER-USER -j RETURN
+Keyin tekshirish:
+
+sudo iptables -L DOCKER-USER -v -n
+Agar nftables ishlatilayotgan bo‘lsa (iptables-nft):
+
+sudo nft add table ip filter
+sudo nft add chain ip filter DOCKER-USER { type filter hook forward priority 0 \; }
+sudo nft add rule ip filter DOCKER-USER return
+Keyin tekshirish:
+
+sudo nft list chain ip filter DOCKER-USER
