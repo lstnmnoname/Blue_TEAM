@@ -1,0 +1,14 @@
+Agar siz nftables ni ishlatishda davom etishni istasangiz va Docker iptables ga bog‘liq bo‘lsa, Docker sozlamalarini o‘zgartiring:
+
+1️⃣ Docker konfiguratsiya faylini oching:
+
+sudo nano /etc/docker/daemon.json
+2️⃣ Quyidagi qatorni qo‘shing yoki yangilang:
+
+{
+  "iptables": false
+}
+3️⃣ Docker xizmatini qayta ishga tushiring:
+
+sudo systemctl restart docker
+Bu Docker ning iptables dan 
